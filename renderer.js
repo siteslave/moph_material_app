@@ -3,7 +3,8 @@ const {ipcRenderer} = require('electron');
 
 angular.module('app', [
   'ngMaterial',
-  'ui.router'
+  'ui.router',
+  'md.data.table'
 ])
   .config(function ($mdThemingProvider) {
     $mdThemingProvider.theme('default')
@@ -17,6 +18,12 @@ angular.module('app', [
   })
 
   .controller('MainCtrl', function ($scope, $mdDialog) {
+
+    $scope.users = [
+      {id: 10001, name: 'Satit Rinapit'},
+      {id: 10002, name: 'John Done'}
+    ];
+
     $scope.showAlert = function (event) {
       $mdDialog.show(
         $mdDialog.alert()

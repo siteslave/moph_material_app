@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./node_modules/angular-material/angular-material.css">
     <link rel="stylesheet" href="./libs/iconfont/material-icons.css">
-
+    <link rel="stylesheet" href="./node_modules/angular-material-data-table/dist/md-data-table.css">
     <title>Hello World!</title>
   </head>
   <body>
@@ -55,6 +55,30 @@
       <md-button class="md-raised md-primary" ng-click="showConfirm($event)">Confirm</md-button>
       <md-button class="md-raised md-primary" ng-click="showAddMember()">Add Member</md-button>
       <md-button class="md-raised md-warn">Warn</md-button>
+
+      <md-table-container>
+        <table md-table>
+          <thead md-head>
+            <tr md-row>
+              <th md-column>#</th>
+              <th md-column>ID</th>
+              <th md-column>USERNAME</th>
+            </tr>
+          </thead>
+          <tbody md-body>
+            <tr md-row ng-repeat="user in users">
+                <td md-cell>{{ $index + 1 }}</td>
+                <td md-cell>{{ user.id }}</td>
+                <td md-cell>{{ user.name }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}" md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+
+
+      </md-table-container>
+
     </div>
 
   </body>
@@ -66,6 +90,7 @@
     require('angular-messages')
     require('angular-animate')
     require('angular-ui-router')
+    require('angular-material-data-table')
 
     require('./renderer.js')
   </script>
